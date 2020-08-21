@@ -18,8 +18,9 @@ class OpenWeatherMapResponseSchema(Schema):
 
     def get_temperature(self, data):
         return {
-            'min': f"{data['main']['temp_min']}°C",
-            'max': f"{data['main']['temp_max']}°C"
+            'average': f"{int(data['main']['temp'])}°C",
+            'min': f"{int(data['main']['temp_min'])}°C",
+            'max': f"{int(data['main']['temp_max'])}°C"
         }
 
     def get_pressure(self, data):

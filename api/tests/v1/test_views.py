@@ -6,6 +6,7 @@ from django.test import SimpleTestCase
 from django.urls import reverse
 
 from api.v1.clients import OpenWeatherMapClient
+from api.v1.exceptions import ExternalAPIError
 from api.v1.views import WeatherDetailsView
 
 
@@ -19,14 +20,12 @@ class WeatherDetailsViewTestCase(SimpleTestCase):
     def test_get_return_validation_error_for_invalid_city(self, mock_serializer_class):
         """get: return validation error if the city id is not valid"""
         # given
-        expected = {}
         mock_serializer = mock_serializer_class()
         mock_serializer.is_valid.return_value = False
-        mock_serializer.errors = expected
         # when
         response = self.client.get(self.url)
         # then
-        self.assertEqual(response.data, expected)
+        self.assertEqual(response.data['error'], WeatherDetailsView.errors_messages['invalid_city'])
         self.assertTrue(response.status_code, HTTPStatus.BAD_REQUEST)
 
     @mock.patch('api.v1.views.cache')
@@ -44,6 +43,25 @@ class WeatherDetailsViewTestCase(SimpleTestCase):
         # then
         self.assertEqual(response.data, expected)
         self.assertTrue(response.status_code, HTTPStatus.OK)
+
+    @mock.patch.object(OpenWeatherMapClient, 'get_weather_data')
+    @mock.patch('api.v1.views.cache')
+    @mock.patch('api.v1.views.CityInputSerializer')
+    def test_get_return_error_message_if_external_api_fails(
+        self, mock_serializer_class, mock_cache, mock_get_weather_data
+    ):
+        """get: return weather data hitting api and cache the result"""
+        # given
+        mock_serializer = mock_serializer_class()
+        mock_serializer.is_valid.return_value = True
+        mock_serializer.data = {'id': 1}
+        mock_cache.get.return_value = None
+        mock_get_weather_data.side_effect = ExternalAPIError
+        # when
+        response = self.client.get(self.url)
+        # then
+        self.assertEqual(response.data['error'], WeatherDetailsView.errors_messages['external_api_error'])
+        self.assertTrue(response.status_code, HTTPStatus.INTERNAL_SERVER_ERROR)
 
     @mock.patch.object(WeatherDetailsView, '_get_cache_key')
     @mock.patch.object(OpenWeatherMapClient, 'get_weather_data')

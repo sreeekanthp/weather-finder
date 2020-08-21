@@ -23,6 +23,7 @@ class OpenWeatherMapResponseSchemaTestCase(SimpleTestCase):
         expected = {
             'city': 'Dubai',
             'temperature': {
+                'average': '32°C',
                 'min': '32°C',
                 'max': '33°C',
             },

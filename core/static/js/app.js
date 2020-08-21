@@ -10,29 +10,31 @@
 			$(".mobile-navigation").slideToggle();
 		});
 
-		var map = $(".map");
-		var latitude = map.data("latitude");
-		var longitude = map.data("longitude");
-		if( map.length ){
-			
-			map.gmap3({
-				map:{
-					options:{
-						center: [latitude,longitude],
-						zoom: 15,
-						scrollwheel: false
-					}
+		$(".find-location").submit(function (e) {
+			e.preventDefault();
+			let city_id = $("#id_city").val();
+			$.ajax({
+				type: "GET",
+				url: "/api/v1/weather/" + city_id + "/",
+				success: function (response) {
+					$("#id_location").text(response.city);
+					$("#id_degree").text(response.temperature.average);
+					$("#id_description").text(response.description);
+					$("#id_min_temperature").text(response.temperature.min);
+					$("#id_max_temperature").text(response.temperature.max);
+					$("#id_humidity").text(response.humidity);
+					$("#id_wind_speed").text(response.wind.speed);
+					$("#id_wind_direction").text(response.wind.direction);
+					$("#id_pressure").text(response.pressure);
 				},
-				marker:{
-					latLng: [latitude,longitude],
+				error: function (response) {
+					$("#id_error").text(response.responseJSON.error);
 				}
 			});
-			
-		}
+		});
 	});
 
 	$(window).load(function(){
-
 	});
 
 })(jQuery, document, window);

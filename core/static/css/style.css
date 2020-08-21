@@ -1265,9 +1265,9 @@ form textarea {
         font-size: 90px;
         font-size: 6.4285714286rem;
         margin-right: 30px; }
-      .forecast-container .forecast.today span {
+      .forecast-container .forecast.today .forcast-item {
         margin-right: 20px; }
-        .forecast-container .forecast.today span img {
+        .forecast-container .forecast.today .forcast-item img {
           margin-right: 5px;
           vertical-align: middle; }
       @media screen and (max-width: 990px) {
