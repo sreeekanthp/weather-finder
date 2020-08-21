@@ -2,7 +2,7 @@ from unittest import mock
 
 from django.test import SimpleTestCase
 
-from api.v1.serializers import OpenWeatherMapResponseSchema
+from api.v1.transformers import OpenWeatherMapResponseSchema
 
 
 class OpenWeatherMapResponseSchemaTestCase(SimpleTestCase):

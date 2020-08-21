@@ -1,14 +1,16 @@
 import requests
 import logging
 
+from django.conf import settings
+
 from api.v1.exceptions import ExternalAPIError
-from api.v1.serializers import OpenWeatherMapResponseSchema
+from api.v1.transformers import OpenWeatherMapResponseSchema
 
 logger = logging.getLogger(__name__)
 
 
 class OpenWeatherMapClient:
-    """ Client class to communicate with openweathermap apis """
+    """ Client class to retrieve weather data using openweathermap apis """
 
     BASE_URL = 'http://api.openweathermap.org/data/2.5/weather'
     serializer_class = OpenWeatherMapResponseSchema
@@ -25,16 +27,21 @@ class OpenWeatherMapClient:
         return serializer_class().dump(data)
 
     def get_weather_data(self, city_id):
-        print('inside weather')
+        """
+        Hit OpenWeatherMap api using api key to get weather data for given city and
+        serialize the data returned from the api
+
+        Args:
+            city_id(int): city id
+
+        Returns: Serialized response from OpenWeatherMap api
+        """
         url = f'{self.BASE_URL}?id={city_id}&appid={self.api_key}&units=metric'
-        response = requests.get(url)
+        response = requests.get(url, timeout=settings.OPEN_WEATHER_API_TIMEOUT)
         try:
             response.raise_for_status()
-        except requests.Timeout:
-            logger.exception('OpenWeatherMap request timed out for city: %s', city_id)
-            raise ExternalAPIError
         except requests.RequestException:
-            logger.exception('OpenWeatherMap failed for city: %s', city_id)
+            logger.exception('OpenWeatherMap api failed for city: %s', city_id)
             raise ExternalAPIError
 
         data = response.json()
