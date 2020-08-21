@@ -2,7 +2,7 @@ import requests
 import logging
 
 from api.v1.exceptions import ExternalAPIError
-from api.v1.serializers import OpenWeatherMapResponseSchema
+from api.v1.transformers import OpenWeatherMapResponseSchema
 
 logger = logging.getLogger(__name__)
 

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'api',
+    'core',
     'weather_finder',
 ]
 
@@ -139,3 +140,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# TODO: Move to env variables
+OPEN_WEATHER_API_KEY = 'ac3e2a7ce0ae50c355b4007e919f75a5'
+OPEN_WEATHER_API_CACHE_VERSION = 1
+OPEN_WEATHER_RESPONSE_CACHE_TIMEOUT = 10

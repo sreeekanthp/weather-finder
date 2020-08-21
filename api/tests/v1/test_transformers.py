@@ -2,13 +2,13 @@ from unittest import mock
 
 from django.test import SimpleTestCase
 
-from api.v1.serializers import OpenWeatherMapResponseSchema
+from api.v1.transformers import OpenWeatherMapResponseSchema
 
 
 class OpenWeatherMapResponseSchemaTestCase(SimpleTestCase):
     """ Tests for OpenWeatherMapResponseSchema """
 
-    @mock.patch('api.v1.serializers.get_wind_direction')
+    @mock.patch('api.v1.transformers.get_wind_direction')
     def test_serialize_return_serialized_data(self, mock_get_wind_direction):
         """test that the data is serialized to defined format"""
         # given
