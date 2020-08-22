@@ -1,119 +1,133 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
 
-		<title>Weather Finder</title>
+    <title>Weather Finder</title>
 
-		<!-- Loading third party fonts -->
-		<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
-		<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Loading third party fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          type="text/css">
 
-		<!-- Loading main css file -->
-		<link rel="stylesheet" href="{% static "css/style.css" %}">
+    <!-- Loading main css file -->
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
 
-		<!--[if lt IE 9]>
+    <!--[if lt IE 9]>
 		<script src="js/ie-support/html5.js"></script>
 		<script src="js/ie-support/respond.js"></script>
 		<![endif]-->
-	</head>
+</head>
 
-	<body>
-		<div class="site-content">
-			<div class="site-header">
-				<div class="container">
-					<a href="index.html" class="branding">
-                        <img src="{% static "images/logo.png" %}" alt="" class="logo">
-						<div class="logo-type">
-							<h1 class="site-title">Weather Finder</h1>
-							<small class="site-description">Find weather in your city</small>
-						</div>
-					</a>
+<body>
+<div class="site-content">
+    <div class="site-header">
+        <div class="container">
+            <a href="index.html" class="branding">
+                <img src="{% static "images/logo.png" %}" alt="" class="logo">
+                <div class="logo-type">
+                    <h1 class="site-title">Weather Finder</h1>
+                    <small class="site-description">Find weather in your city</small>
+                </div>
+            </a>
 
-					<!-- Default snippet for navigation -->
-					<div class="main-navigation">
-						<button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
-						<ul class="menu">
-							<li class="menu-item current-menu-item"><a href="/">Home</a></li>
-						</ul> <!-- .menu -->
-					</div> <!-- .main-navigation -->
+            <!-- Default snippet for navigation -->
+            <div class="main-navigation">
+                <button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
+                <ul class="menu">
+                    <li class="menu-item current-menu-item"><a href="/">Home</a></li>
+                </ul> <!-- .menu -->
+                <ul class="menu">
+                    <li class="menu-item current-menu-item">
+                        <select name="language" id="id_language">
+                            <option value="volvo">English</option>
+                            <option value="saab">German</option>
+                            <option value="opel">French</option>
+                          </select>
+                    </li>
+                </ul> <!-- .menu -->
+            </div> <!-- .main-navigation -->
 
-					<div class="mobile-navigation"></div>
+            <div class="mobile-navigation"></div>
 
-				</div>
-			</div> <!-- .site-header -->
+        </div>
+    </div> <!-- .site-header -->
 
-			<div class="hero" data-bg-image="{% static "images/banner.png" %}">
-            <div class="container">
+    <div class="hero" data-bg-image="{% static "images/banner.jpg" %}" style="min-height: 450px">
+        <div class="container">
+            <div class="search-box">
                 <form action="#" class="find-location">
-                    <input type="text" id="id_city" placeholder="Find your location...">
+                    <input type="text" id="id_city" placeholder="Start typing your city name...">
+                    <input type="hidden" id="id_city_value"/>
                     <input type="submit" value="Find">
                 </form>
-
-                <span id="id_error">Something went wrong!</span>
-
+                <div style="display: none" class="alert" id="id_error"></div>
+                <div class="auto-complete"></div>
             </div>
-			</div>
-			<div class="forecast-table">
-				<div class="container">
-					<div class="forecast-container">
-						<div class="today forecast">
-							<div class="forecast-header">
-								<div class="day">Monday</div>
-								<div class="date">6 Oct</div>
-							</div> <!-- .forecast-header -->
-							<div class="forecast-content">
-								<div class="location" id="id_location">New York</div>
-								<div class="degree">
-									<div class="num" id="id_degree">23°C</div>
-									<div class="forecast-icon">
-										<img src="{% static "images/icons/icon-1.svg" %}" alt="" width=90>
-									</div>
-                                    <div><span id="id_description"></span></div>
-                                    <div>Min Temp: <span id="id_min_temperature">23°C</span></div>
-                                    <div>Max Temp: <span id="id_max_temperature">23°C</span></div>
-								</div>
-                                <span class="forcast-item"><img src="{% static "images/icon-umberella.png" %}" alt="">
-                                    <span id="id_humidity">20%</span>
-                                </span>
-								<span class="forcast-item"><img src="{% static "images/icon-wind.png" %}" alt="">
-                                    <span id="id_wind_speed">18km/h</span>
-                                </span>
-								<span class="forcast-item"><img src="{% static "images/icon-compass.png" %}" alt="">
-                                    <span id="id_wind_direction">East</span>
-                                </span>
-                                <span class="forcast-item"><img src="{% static "images/icon-compass.png" %}" alt="">
-                                    <span id="id_pressure"></span>
-                                </span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<main class="main-content">
 
-			</main> <!-- .main-content -->
+        </div>
+    </div>
+    <div class="forecast-table">
+        <div class="container">
+            <div class="forecast-container">
+                <div class="today forecast">
+                    <div class="forecast-header">
+                        <div class="day">{{ day }}</div>
+                        <div class="date">{{ date }}</div>
+                    </div> <!-- .forecast-header -->
+                    <div class="forecast-content">
+                        <div class="weather-placeholder-text"> Select a city to show weather data</div>
+                        <div class="weather-data" style="display: none;">
+                            <div class="location" id="id_location">New York</div>
+                            <div class="degree">
+                                <div class="num" id="id_degree">23°C</div>
+                                <div id="weather_description">
+                                    <p class="weather_description_min_temp"><strong>Min: </strong><span>23°C</span>, <strong>Max: </strong><span>23°C</span></p>
+                                    <p class="weather_description_title">Test description</p>
+                                </div>
+                            </div>
+                            <span class="forcast-item"><img src="{% static "images/icon-umberella.png" %}" alt="">
+                                        <span id="id_humidity">20%</span>
+                                    </span>
+                            <span class="forcast-item"><img src="{% static "images/icon-wind.png" %}" alt="">
+                                        <span id="id_wind_speed">18km/h</span>
+                                    </span>
+                            <span class="forcast-item"><img src="{% static "images/icon-compass.png" %}" alt="">
+                                        <span id="id_wind_direction">East</span>
+                                    </span>
+                            <span class="forcast-item"><img src="{% static "images/icon-compass.png" %}" alt="">
+                                        <span id="id_pressure"></span>
+                                    </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <main class="main-content">
 
-			<footer class="site-footer">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-3 col-md-offset-1">
+    </main> <!-- .main-content -->
 
-						</div>
-					</div>
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-md-offset-1">
 
-					<p class="colophon">Copyright 2020 Weather Finder. All rights reserved</p>
-				</div>
-			</footer> <!-- .site-footer -->
-		</div>
+                </div>
+            </div>
 
-		<script src="{% static "js/jquery-1.11.1.min.js" %}"></script>
-		<script src="{% static "js/plugins.js" %}"></script>
-		<script src="{% static "js/app.js" %}"></script>
+            <p class="colophon">Copyright 2020 Weather Finder. All rights reserved</p>
+        </div>
+    </footer> <!-- .site-footer -->
+</div>
+<script src="{% static "js/jquery-1.11.1.min.js" %}"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="{% static "js/plugins.js" %}"></script>
+<script src="{% static "js/app.js" %}"></script>
 
-	</body>
+</body>
 
 </html>

@@ -118,7 +118,9 @@ USE_L10N = True
 
 USE_TZ = True
 
-# TODO: Move to env variables
+# TODO: Move to env variables/config
+OPEN_WEATHER_API_BASE_URL = 'http://api.openweathermap.org/data/2.5/'
+OPEN_WEATHER_API_TIMEOUT = 5
 OPEN_WEATHER_API_KEY = 'ac3e2a7ce0ae50c355b4007e919f75a5'
 OPEN_WEATHER_API_CACHE_VERSION = 1
 OPEN_WEATHER_RESPONSE_CACHE_TIMEOUT = 10

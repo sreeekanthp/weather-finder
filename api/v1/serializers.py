@@ -1,17 +1,18 @@
 from rest_framework import fields
 from rest_framework import serializers
 
-from core.models import City
-
 
 class CityInputSerializer(serializers.Serializer):
-    """ Serializer class to validate city id input """
-
+    """
+    Serializer class to validate city id input
+    Any additional validations can be added here
+    """
     id = fields.IntegerField()
 
-    def validate_id(self, value):
-        try:
-            city = City.objects.get(id=value)
-        except City.DoesNotExist:
-            raise serializers.ValidationError("Invalid city")
-        return city.external_id
+
+class CityNameQuerySerializer(serializers.Serializer):
+    """
+    Serializer class to validate city name query
+    Any additional validations can be added here
+    """
+    query = fields.CharField()
