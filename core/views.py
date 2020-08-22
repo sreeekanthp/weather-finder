@@ -1,5 +1,9 @@
-from datetime import datetime
+from datetime import date
 
+from django.conf import settings
+from django.utils.formats import date_format
+from django.utils.translation import get_language
+from django.utils.translation import gettext as _
 from django.views.generic import TemplateView
 
 
@@ -9,7 +13,10 @@ class IndexView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data()
-        today = datetime.today()
-        context['day'] = today.strftime("%A")
-        context['date'] = today.strftime("%d %B, %Y")
+        today = date.today()
+        context.update({
+            'day': date_format(today, 'l'),
+            'date': date_format(today, 'd b Y'),
+            'language_options': settings.LANGUAGES,
+        })
         return context

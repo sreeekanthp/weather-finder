@@ -1,18 +1,27 @@
+from django.conf import settings
 from rest_framework import fields
 from rest_framework import serializers
 
 
-class CityInputSerializer(serializers.Serializer):
+class BaseAPIInputSerializer(serializers.Serializer):
+    """Base API input serializer with common fields"""
+
+    language = fields.ChoiceField(choices=settings.LANGUAGES, default=settings.LANGUAGE_CODE, allow_null=True)
+
+
+class WeatherAPIInputSerializer(BaseAPIInputSerializer):
     """
     Serializer class to validate city id input
     Any additional validations can be added here
     """
-    id = fields.IntegerField()
+
+    city_id = fields.IntegerField()
 
 
-class CityNameQuerySerializer(serializers.Serializer):
+class CityAPIInputySerializer(BaseAPIInputSerializer):
     """
     Serializer class to validate city name query
     Any additional validations can be added here
     """
+
     query = fields.CharField()

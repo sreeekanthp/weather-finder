@@ -1,4 +1,8 @@
 {% load static %}
+{% load i18n %}
+{% get_current_language as language %}
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
 
-    <title>Weather Finder</title>
+    <title>{% translate "Weather Finder" %}</title>
 
     <!-- Loading third party fonts -->
     <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
@@ -29,8 +33,8 @@
             <a href="index.html" class="branding">
                 <img src="{% static "images/logo.png" %}" alt="" class="logo">
                 <div class="logo-type">
-                    <h1 class="site-title">Weather Finder</h1>
-                    <small class="site-description">Find weather in your city</small>
+                    <h1 class="site-title">{% translate "Weather Finder" %}</h1>
+                    <small class="site-description">{% translate "Find weather in your city" %}</small>
                 </div>
             </a>
 
@@ -38,15 +42,15 @@
             <div class="main-navigation">
                 <button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
                 <ul class="menu">
-                    <li class="menu-item current-menu-item"><a href="/">Home</a></li>
+                    <li class="menu-item current-menu-item"><a href="/">{% translate "Home" %}</a></li>
                 </ul> <!-- .menu -->
                 <ul class="menu">
                     <li class="menu-item current-menu-item">
                         <select name="language" id="id_language">
-                            <option value="volvo">English</option>
-                            <option value="saab">German</option>
-                            <option value="opel">French</option>
-                          </select>
+                            {% for lang_code, lang_name in language_options %}
+                            <option value="/{{ lang_code }}/" {% if lang_code == language %}selected="selected"{% endif %}>{{ lang_name }}</option>
+                            {% endfor %}
+                        </select>
                     </li>
                 </ul> <!-- .menu -->
             </div> <!-- .main-navigation -->
@@ -60,9 +64,10 @@
         <div class="container">
             <div class="search-box">
                 <form action="#" class="find-location">
-                    <input type="text" id="id_city" placeholder="Start typing your city name...">
+                    <input type="text" id="id_city" placeholder="{% translate "Start typing your city name" %}...">
                     <input type="hidden" id="id_city_value"/>
-                    <input type="submit" value="Find">
+                    <input type="hidden" id="id_request_language" value="{{ language }}"/>
+                    <input type="submit" value="{% translate "Find" %}">
                 </form>
                 <div style="display: none" class="alert" id="id_error"></div>
                 <div class="auto-complete"></div>
@@ -79,28 +84,32 @@
                         <div class="date">{{ date }}</div>
                     </div> <!-- .forecast-header -->
                     <div class="forecast-content">
-                        <div class="weather-placeholder-text"> Select a city to show weather data</div>
+                        <div class="weather-placeholder-text">{% translate "Select a city to show weather data"%}</div>
                         <div class="weather-data" style="display: none;">
                             <div class="location" id="id_location">New York</div>
                             <div class="degree">
-                                <div class="num" id="id_degree">23°C</div>
+                                <div class="num" id="id_degree"></div>
                                 <div id="weather_description">
-                                    <p class="weather_description_min_temp"><strong>Min: </strong><span>23°C</span>, <strong>Max: </strong><span>23°C</span></p>
-                                    <p class="weather_description_title">Test description</p>
+                                    <p class="weather_description_min_temp"><strong>{% translate "Min" %}: </strong><span></span>, <strong>{% translate "Max" %}: </strong><span></span></p>
+                                    <p class="weather_description_title"></p>
                                 </div>
                             </div>
-                            <span class="forcast-item"><img src="{% static "images/icon-umberella.png" %}" alt="">
-                                        <span id="id_humidity">20%</span>
-                                    </span>
-                            <span class="forcast-item"><img src="{% static "images/icon-wind.png" %}" alt="">
-                                        <span id="id_wind_speed">18km/h</span>
-                                    </span>
-                            <span class="forcast-item"><img src="{% static "images/icon-compass.png" %}" alt="">
-                                        <span id="id_wind_direction">East</span>
-                                    </span>
-                            <span class="forcast-item"><img src="{% static "images/icon-compass.png" %}" alt="">
-                                        <span id="id_pressure"></span>
-                                    </span>
+                            <span class="forcast-item">
+                                <img src="{% static "images/icon-umberella.png" %}" alt="">
+                                <span id="id_humidity"></span>
+                            </span>
+                            <span class="forcast-item">
+                                <img src="{% static "images/icon-wind.png" %}" alt="">
+                                <span id="id_wind_speed"></span>
+                            </span>
+                            <span class="forcast-item">
+                                <img src="{% static "images/icon-compass.png" %}" alt="">
+                                <span id="id_wind_direction"></span>
+                            </span>
+                            <span class="forcast-item">
+                                <img src="{% static "images/icon-compass.png" %}" alt="">
+                                <span id="id_pressure"></span>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -119,7 +128,7 @@
                 </div>
             </div>
 
-            <p class="colophon">Copyright 2020 Weather Finder. All rights reserved</p>
+            <p class="colophon">{% translate "Copyright 2020 Weather Finder. All rights reserved" %}</p>
         </div>
     </footer> <!-- .site-footer -->
 </div>

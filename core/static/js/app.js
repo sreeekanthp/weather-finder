@@ -13,9 +13,13 @@
         $(".find-location").submit(function (e) {
             e.preventDefault();
             let city_id = $("#id_city_value").val();
+            let language = $("#id_request_language").val();
             $.ajax({
                 type: "GET",
                 url: "/api/v1/weather/" + city_id + "/",
+                data: {
+                    language: language
+                },
                 success: function (response) {
                     $("#id_location").text(response.city);
                     $("#id_degree").text(response.temperature.average);
@@ -33,6 +37,14 @@
                     $("#id_error").text(response.responseJSON.error).show();
                 }
             });
+        });
+
+        $('#id_language').on('change', function () {
+            var url = $(this).val(); // get selected value
+            if (url) { // require a URL
+                window.location = url; // redirect
+            }
+            return false;
         });
 
         $("#id_city").autocomplete({

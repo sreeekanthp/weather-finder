@@ -2377,3 +2377,7 @@ form textarea {
     background-color: #f8d7da;
     border-color: #f5c6cb;
 }
+
+.ui-helper-hidden-accessible {
+    display: none;
+}
