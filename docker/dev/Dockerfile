@@ -20,6 +20,7 @@ RUN apk update && apk upgrade \
 # install dependencies
 RUN pip install --upgrade pip
 COPY ./requirements/base.txt .
+COPY ./requirements/testing.txt .
 COPY ./requirements/development.txt .
 
 RUN pip install -r development.txt

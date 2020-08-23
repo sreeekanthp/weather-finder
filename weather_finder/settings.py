@@ -21,12 +21,12 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'zxjji+263&u=f0nd!xj1x3i90gj%5&dm#o8t^##j-rj9_ghi7='
+SECRET_KEY = os.environ.get('SECRET_KEY', 'zxjji+263&u=f0nd!xj1x3i90gj%5&dm#o8t^##j-rj9_ghi7=')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', True)
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', ['*'])
 
 
 # Application definition
@@ -133,11 +133,11 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
 
-# TODO: Move to env variables/config
+# Openweather API config
 OPEN_WEATHER_API_BASE_URL = 'http://api.openweathermap.org/data/2.5/'
-OPEN_WEATHER_API_TIMEOUT = 5
-OPEN_WEATHER_API_KEY = 'ac3e2a7ce0ae50c355b4007e919f75a5'
-WEATHER_API_CACHE_VERSION = 1
-WEATHER_RESPONSE_CACHE_TIMEOUT = 600
-CITY_RESPONSE_CACHE_TIMEOUT = 600
-CITY_API_CACHE_VERSION = 1
+OPEN_WEATHER_API_KEY = os.environ.get('OPEN_WEATHER_API_KEY')
+OPEN_WEATHER_API_TIMEOUT = 2
+WEATHER_RESPONSE_CACHE_TIMEOUT = os.environ.get('WEATHER_RESPONSE_CACHE_TIMEOUT', 10*60)
+CITY_RESPONSE_CACHE_TIMEOUT = os.environ.get('CITY_RESPONSE_CACHE_TIMEOUT', 30*24*60*60)
+WEATHER_API_CACHE_VERSION = os.environ.get('WEATHER_API_CACHE_VERSION', 1)
+CITY_API_CACHE_VERSION = os.environ.get('CITY_API_CACHE_VERSION', 1)

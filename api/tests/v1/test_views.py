@@ -111,8 +111,8 @@ class WeatherDetailsViewTestCase(SimpleTestCase):
         mock_cache.set.assert_called_once_with(
             cache_key,
             expected,
-            timeout=settings.WEATHER_RESPONSE_CACHE_TIMEOUT,
-            version=settings.WEATHER_API_CACHE_VERSION,
+            timeout=600,
+            version=1,
         )
 
 
@@ -213,6 +213,6 @@ class CityListViewTestCase(SimpleTestCase):
         mock_cache.set.assert_called_once_with(
             cache_key,
             expected,
-            timeout=settings.CITY_RESPONSE_CACHE_TIMEOUT,
-            version=settings.CITY_API_CACHE_VERSION,
+            timeout=600,
+            version=1,
         )

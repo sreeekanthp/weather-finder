@@ -65,7 +65,7 @@ class BaseWeatherAPIView(APIView):
             )
         else:
             cache.set(
-                cache_key, response, timeout=self.CACHE_TIMEOUT, version=self.CACHE_VERSION,
+                cache_key, response, timeout=int(self.CACHE_TIMEOUT), version=int(self.CACHE_VERSION),
             )
         return Response(data=response, status=HTTPStatus.OK)
 
