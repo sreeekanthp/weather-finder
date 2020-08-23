@@ -4,7 +4,7 @@ from marshmallow import fields
 from api.v1.helpers import get_wind_direction
 
 
-class OpenWeatherMapWeatherResponseSchema(Schema):
+class WeatherResponseSchema(Schema):
     """ Schema class to format openweathermap weather response """
     city = fields.String(attribute='name')
     description = fields.Method('get_description')
@@ -36,7 +36,7 @@ class OpenWeatherMapWeatherResponseSchema(Schema):
         }
 
 
-class OpenWeatherMapCityResponseSchema(Schema):
+class CityListResponseSchema(Schema):
     """ Schema class to format openweathermap city list response """
     id = fields.Integer()
     name = fields.Method('get_name')

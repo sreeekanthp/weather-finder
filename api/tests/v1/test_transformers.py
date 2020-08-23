@@ -2,7 +2,7 @@ from unittest import mock
 
 from django.test import SimpleTestCase
 
-from api.v1.transformers import OpenWeatherMapResponseSchema
+from api.v1.transformers import WeatherResponseSchema
 
 
 class OpenWeatherMapResponseSchemaTestCase(SimpleTestCase):
@@ -33,6 +33,6 @@ class OpenWeatherMapResponseSchemaTestCase(SimpleTestCase):
             'description': 'few clouds',
         }
         # when
-        actual = OpenWeatherMapResponseSchema().dump(data)
+        actual = WeatherResponseSchema().dump(data)
         # then
         self.assertDictEqual(actual, expected)
