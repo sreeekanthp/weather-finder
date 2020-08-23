@@ -21,7 +21,7 @@ Make sure you have docker up and running
 **Clone repo locally**
 
    
-    git clone git@github.com:sreekanthkaralmanna/weather-finder.git
+    git clone https://github.com/sreekanthkaralmanna/weather-finder.git
     
 	cd weather-finder
 
