@@ -1,1 +1,3 @@
 -r testing.txt
+
+gunicorn==20.0.4
