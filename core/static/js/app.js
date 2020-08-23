@@ -13,12 +13,11 @@
         $(".find-location").submit(function (e) {
             e.preventDefault();
             let city_id = $("#id_city_value").val();
-            let language = $("#id_request_language").val();
             $.ajax({
                 type: "GET",
                 url: "/api/v1/weather/" + city_id + "/",
                 data: {
-                    language: language
+                    language: $("#id_request_language").val()
                 },
                 success: function (response) {
                     $("#id_location").text(response.city);
@@ -53,7 +52,8 @@
                     url: "/api/v1/cities/",
                     dataType: "json",
                     data: {
-                        query: $('#id_city').val()
+                        query: $('#id_city').val(),
+                        language: $("#id_request_language").val()
                     },
                     success: function (data) {
                         let formattedData = $.map(data, function (objet) {

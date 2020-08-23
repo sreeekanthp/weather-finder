@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-22 17:42+0000\n"
+"POT-Creation-Date: 2020-08-23 12:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,9 +18,74 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: api/v1/views.py:56 api/v1/views.py:91
+#: api/tests/v1/test_views.py:89 api/tests/v1/test_views.py:191
+#: api/v1/views.py:63
 msgid "Something went wrong! Please try again later"
 msgstr "Un problème est survenu! Veuillez réessayer plus tard"
+
+#: api/v1/helpers.py:14
+msgid "North"
+msgstr "Nord"
+
+#: api/v1/helpers.py:15
+msgid "North-northeast"
+msgstr "Nord-nord-est"
+
+#: api/v1/helpers.py:16
+msgid "Northeast"
+msgstr "Nord-est"
+
+#: api/v1/helpers.py:17
+msgid "East-northeast"
+msgstr "Est-nord-est"
+
+#: api/v1/helpers.py:18
+msgid "East"
+msgstr "Est"
+
+#: api/v1/helpers.py:19
+msgid "East-southeast"
+msgstr "Est-sud-est"
+
+#: api/v1/helpers.py:20
+msgid "Southeast"
+msgstr "Sud-est"
+
+#: api/v1/helpers.py:21
+msgid "South-southeast"
+msgstr "Sud-sud-est"
+
+#: api/v1/helpers.py:22
+msgid "South"
+msgstr "Sud"
+
+#: api/v1/helpers.py:23
+msgid "South-southwest"
+msgstr "Sud-sud-ouest"
+
+#: api/v1/helpers.py:24
+msgid "Southwest"
+msgstr "Sud-ouest"
+
+#: api/v1/helpers.py:25
+msgid "West-southwest"
+msgstr "Ouest-sud-ouest"
+
+#: api/v1/helpers.py:26
+msgid "West"
+msgstr "Ouest"
+
+#: api/v1/helpers.py:27
+msgid "West-northwest"
+msgstr "Ouest-nord-ouest"
+
+#: api/v1/helpers.py:28
+msgid "Northwest"
+msgstr "Nord Ouest"
+
+#: api/v1/helpers.py:29
+msgid "North-northwest"
+msgstr "Nord-nord-ouest"
 
 #: core/templates/index.html:13 core/templates/index.html:36
 msgid "Weather Finder"
@@ -58,14 +123,14 @@ msgstr "Max"
 msgid "Copyright 2020 Weather Finder. All rights reserved"
 msgstr "Copyright 2020 Weather Finder. Tous les droits sont réservés"
 
-#: weather_finder/settings.py:125
+#: weather_finder/settings.py:127
 msgid "English"
 msgstr "Anglaise"
 
-#: weather_finder/settings.py:126
+#: weather_finder/settings.py:128
 msgid "German"
 msgstr "Allemande"
 
-#: weather_finder/settings.py:127
+#: weather_finder/settings.py:129
 msgid "French"
 msgstr "Française"

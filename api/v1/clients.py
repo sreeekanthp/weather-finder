@@ -1,6 +1,6 @@
-import requests
 import logging
 
+import requests
 from django.conf import settings
 from requests import RequestException
 
@@ -44,8 +44,10 @@ class OpenWeatherMapWeatherClient(BaseOpenWeatherMapClient):
     """Client class to get the weather details for given city using openweathermap api"""
 
     def get_url(self, *args, **kwargs):
-        return f"{settings.OPEN_WEATHER_API_BASE_URL}weather?id={kwargs['city_id']}" \
-               f"&lang={self.language}&appid={self.api_key}&units=metric"
+        return (
+            f"{settings.OPEN_WEATHER_API_BASE_URL}weather?id={kwargs['city_id']}"
+            f"&lang={self.language}&appid={self.api_key}&units=metric"
+        )
 
     def get_serialized_data(self, data):
         return WeatherResponseSchema().dump(data)
@@ -55,7 +57,9 @@ class OpenWeatherMapCityClient(BaseOpenWeatherMapClient):
     """Client class to get the list of cities using openweathermap api"""
 
     def get_url(self, *args, **kwargs):
-        return f"{settings.OPEN_WEATHER_API_BASE_URL}find?q={kwargs['query']}&lang={self.language}&appid={self.api_key}"
+        return (
+            f"{settings.OPEN_WEATHER_API_BASE_URL}find?q={kwargs['query']}&lang={self.language}&appid={self.api_key}"
+        )
 
     def get_serialized_data(self, data):
         return CityListResponseSchema().dump(data['list'], many=True)
