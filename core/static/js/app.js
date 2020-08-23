@@ -10,8 +10,7 @@
             $(".mobile-navigation").slideToggle();
         });
 
-        $(".find-location").submit(function (e) {
-            e.preventDefault();
+        let submitForm =  function() {
             let city_id = $("#id_city_value").val();
             $.ajax({
                 type: "GET",
@@ -20,6 +19,7 @@
                     language: $("#id_request_language").val()
                 },
                 success: function (response) {
+                    $("#id_error").hide();
                     $("#id_location").text(response.city);
                     $("#id_degree").text(response.temperature.average);
                     $("#weather_description .weather_description_title").text(response.description);
@@ -36,7 +36,7 @@
                     $("#id_error").text(response.responseJSON.error).show();
                 }
             });
-        });
+        };
 
         $('#id_language').on('change', function () {
             var url = $(this).val(); // get selected value
@@ -56,6 +56,7 @@
                         language: $("#id_request_language").val()
                     },
                     success: function (data) {
+                        $("#id_error").hide();
                         let formattedData = $.map(data, function (objet) {
                             return {
                                 label: objet.name,
@@ -66,6 +67,7 @@
                     },
                     error: function (message) {
                         response([]);
+                        $("#id_error").text(message.responseJSON.error).show();
                     }
                 });
             },
@@ -75,6 +77,7 @@
             select: function (event, ui) {
                 $(' #id_city ').val(ui.item.label);
                 $(' #id_city_value ').val(ui.item.value);
+                submitForm();
                 return false;
             },
             messages: {
