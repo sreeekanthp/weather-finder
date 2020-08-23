@@ -2,7 +2,6 @@ from http import HTTPStatus
 from unittest import mock
 from unittest.mock import Mock
 
-from django.conf import settings
 from django.test import SimpleTestCase
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _

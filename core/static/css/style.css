@@ -2328,7 +2328,7 @@ form textarea {
     color: #bfc1c8;
     font-size: 14px;
     font-weight: normal;
-    margin-bottom: 2px
+    margin: 5px 0;
 }
 
 .weather_description_max_temp {

@@ -23,7 +23,7 @@ class OpenWeatherMapResponseSchemaTestCase(SimpleTestCase):
         }
         expected = {
             'city': 'Dubai',
-            'temperature': {'average': '32°C', 'min': '32°C', 'max': '33°C',},
+            'temperature': {'average': '32°C', 'min': '32°C', 'max': '33°C'},
             'pressure': '997 hPa',
             'humidity': '79%',
             'wind': {'speed': '3.1 m/s', 'direction': mock_direction},

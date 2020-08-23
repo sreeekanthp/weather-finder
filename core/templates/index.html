@@ -90,7 +90,8 @@
                             <div class="degree">
                                 <div class="num" id="id_degree"></div>
                                 <div id="weather_description">
-                                    <p class="weather_description_min_temp"><strong>{% translate "Min" %}: </strong><span></span>, <strong>{% translate "Max" %}: </strong><span></span></p>
+                                    <p class="weather_description_min_temp">
+                                        <strong>{% translate "Min" %}: </strong><span></span> <strong style="margin-left: 15px;">{% translate "Max" %}: </strong><span></span></p>
                                     <p class="weather_description_title"></p>
                                 </div>
                             </div>
@@ -99,12 +100,8 @@
                                 <span id="id_humidity"></span>
                             </span>
                             <span class="forcast-item">
-                                <img src="{% static "images/icon-wind.png" %}" alt="">
-                                <span id="id_wind_speed"></span>
-                            </span>
-                            <span class="forcast-item">
-                                <img src="{% static "images/icon-compass.png" %}" alt="">
-                                <span id="id_wind_direction"></span>
+                                <img src="{% static "images/icon-wind.png" %}" alt="humidity">
+                                <span id="id_wind_speed"></span> <span id="id_wind_direction"></span>
                             </span>
                             <span class="forcast-item">
                                 <img src="{% static "images/icon-compass.png" %}" alt="">

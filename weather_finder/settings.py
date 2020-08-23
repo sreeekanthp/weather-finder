@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'weather_finder.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': BASE_DIR / 'db.sqlite3',}}
+DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': BASE_DIR / 'db.sqlite3'}}
 
 REDIS_HOST = os.environ.get('REDIS_HOST', '127.0.0.1')
 CACHES = {
@@ -95,17 +95,32 @@ CACHES = {
 }
 
 
-REST_FRAMEWORK = {'DEFAULT_RENDERER_CLASSES': ['rest_framework.renderers.JSONRenderer',]}
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'WARNING',
+    },
+}
+
+
+REST_FRAMEWORK = {'DEFAULT_RENDERER_CLASSES': ['rest_framework.renderers.JSONRenderer']}
 
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',},
-    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',},
-    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',},
-    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',},
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
 
@@ -135,7 +150,7 @@ LOCALE_PATHS = (
 
 # Openweather API config
 OPEN_WEATHER_API_BASE_URL = 'http://api.openweathermap.org/data/2.5/'
-OPEN_WEATHER_API_KEY = os.environ.get('OPEN_WEATHER_API_KEY')
+OPEN_WEATHER_API_KEY = os.environ.get('OPEN_WEATHER_API_KEY', 'ac3e2a7ce0ae50c355b4007e919f75a5')
 OPEN_WEATHER_API_TIMEOUT = 2
 WEATHER_RESPONSE_CACHE_TIMEOUT = os.environ.get('WEATHER_RESPONSE_CACHE_TIMEOUT', 10*60)
 CITY_RESPONSE_CACHE_TIMEOUT = os.environ.get('CITY_RESPONSE_CACHE_TIMEOUT', 30*24*60*60)
