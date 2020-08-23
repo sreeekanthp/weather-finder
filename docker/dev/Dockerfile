@@ -16,12 +16,15 @@ RUN apk update && apk upgrade \
         linux-headers \
         gettext-dev \
     && pip install pipenv
+
 # install dependencies
 RUN pip install --upgrade pip
-COPY ./requirements.txt .
-RUN pip install -r requirements.txt
+COPY ./requirements/base.txt .
+COPY ./requirements/development.txt .
+
+RUN pip install -r development.txt
 
 # copy project
 COPY . .
 
-ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
+ENTRYPOINT ["/usr/src/app/docker/entrypoint.sh"]
