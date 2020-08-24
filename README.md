@@ -16,7 +16,7 @@ Weather finder supports English, German and French languages.
   
 ## Development  
   
-Make sure you have docker up and running
+Make sure you have docker up and running with docker compose version >= 1.22.0
 
 **Clone repo locally**
 
