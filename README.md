@@ -1,6 +1,7 @@
 # Weather Finder  
   
   
+
 Weather finder is a django application to get weather details of any given city. Weather data is retrieved using [Open weather map apis](https://openweathermap.org/api).  
 
 Weather finder supports English, German and French languages.
